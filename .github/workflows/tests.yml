@@ -21,7 +21,7 @@ jobs:
       name: Get Changed Files
       uses: dorny/paths-filter@v2
       with:
-        token: ${{ github.token }}
+        token: ${{ secrets.TOKEN }}
         list-files: shell
         filters: |
           repo:
@@ -180,7 +180,7 @@ jobs:
 
       - name: Download Previous Binance CI Artifacts
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           python .github/workflows/scripts/download-previous-artifacts.py \
             --repo=${{ github.event.repository.full_name }} \
@@ -191,7 +191,7 @@ jobs:
 
       - name: Download Previous Kucoin CI Artifacts
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           python .github/workflows/scripts/download-previous-artifacts.py \
             --repo=${{ github.event.repository.full_name }} \
@@ -222,7 +222,7 @@ jobs:
 
       - name: Comment CI Results
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         run: |
           python .github/workflows/scripts/comment-ci-results.py \
             --repo=${{ github.event.repository.full_name }} downloaded-results
